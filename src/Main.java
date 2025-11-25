@@ -7,22 +7,36 @@ public class Main {
         System.out.print("Digite o tamanho do vetor: ");
         int tamanho = sc.nextInt();
 
-        exibeVetor(tamanho);
+        if (tamanho <= 0){
+            System.out.println("Tamanho precisa ser maior que 0!");
+            return;
+        }
+
+        int[] vetor = new int[tamanho];
+        System.out.println("Preenchendo vetor[" + tamanho + "]:");
+
+        preencheVetor(vetor, 0);
+
+        System.out.print("Vetor["+tamanho+"]: [ ");
+        exibeVetor(vetor, 0, tamanho);
+        System.out.print("]");
     }
 
-    public static int preencheVetor(int tamanho) {
-        if(tamanho == 0){
+    public static int preencheVetor(int[] vetor, int n) {
+        Scanner sc = new Scanner(System.in);
+        if(n >= vetor.length){
             return 0;
         }
-        return preencheVetor(tamanho - 1);
+        System.out.print("Vetor[" + n + "] = ");
+        vetor[n] = sc.nextInt();
+        return preencheVetor(vetor, n+1);
     }
 
-    public static int exibeVetor(int tamanho) {
-        if(tamanho == 0){
+    public static int exibeVetor(int[] vetor, int n, int tamanho) {
+        if(n >= vetor.length){
             return 0;
         }
-        System.out.println(preencheVetor(tamanho) + tamanho);
-        return exibeVetor(tamanho - 1);
-
+        System.out.print(vetor[n] + " ");
+        return exibeVetor(vetor, n+1, tamanho);
     }
 }
